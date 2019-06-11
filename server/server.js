@@ -13,17 +13,21 @@ var io=socketIO(server);
 app.use(express.static(publicPath)); //middleware
 
 io.on('connection',(socket) => {
-  console.log('New User Connected!');
+  console.log('New User Connected!!');
 
-
-  socket.emit('newMessage',{
-    from: 'Joe',
-    text: 'Hello Friends!!',
-    createdAt: 234
-  });
+  // socket.emit('newMessage',{
+  //   from: 'Joe',
+  //   text: 'Hello Friends!!',
+  //   createdAt: 234
+  // });
 
   socket.on('createMessage',(newMessage) => {
     console.log('createMessage',newMessage);
+    io.emit('newMessage',{
+      from: newMessage.from,
+      text: newMessage.text,
+      createdAt: new Date().getTime()
+    })
   });
 
 
