@@ -28,6 +28,7 @@ socket.on('join',(params,callback)=>{
   //socket.broadcast.emit -> socket.broadcast.to('The Office Fans') : Sends event to everyone except to the user sending this.
   //socket.emit -> For particular user 4
 
+  
   socket.emit('newMessage', generateMessage('Admin','Welcome to the Chat App'));
   socket.broadcast.to(params.room).emit('newMessage',generateMessage('Admin',`${params.name} has joined.`));
   callback();
